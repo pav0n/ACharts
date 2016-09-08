@@ -45,7 +45,7 @@ public class RadarChartRenderer: LineScatterCandleRadarChartRenderer
         }
     }
     
-    internal func drawDataSet(context context: CGContext?, dataSet: RadarChartDataSet)
+    internal func drawDataSet(context context: CGContext!, dataSet: RadarChartDataSet)
     {
         CGContextSaveGState(context)
         
@@ -160,14 +160,14 @@ public class RadarChartRenderer: LineScatterCandleRadarChartRenderer
         }
     }
     
-    public override func drawExtras(context context: CGContext?)
+    public override func drawExtras(context context: CGContext!)
     {
         drawWeb(context: context)
     }
     
     private var _webLineSegmentsBuffer = [CGPoint](count: 2, repeatedValue: CGPoint())
     
-    internal func drawWeb(context context: CGContext?)
+    internal func drawWeb(context context: CGContext!)
     {
         let sliceangle = _chart.sliceAngle
         
@@ -227,7 +227,7 @@ public class RadarChartRenderer: LineScatterCandleRadarChartRenderer
     
     private var _highlightPtsBuffer = [CGPoint](count: 4, repeatedValue: CGPoint())
 
-    public override func drawHighlighted(context context: CGContext?, indices: [ChartHighlight])
+    public override func drawHighlighted(context context: CGContext!, indices: [ChartHighlight])
     {
         if (_chart.data === nil)
         {

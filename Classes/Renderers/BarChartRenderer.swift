@@ -63,7 +63,7 @@ public class BarChartRenderer: ChartDataRendererBase
         }
     }
     
-    internal func drawDataSet(context context: CGContext?, dataSet: BarChartDataSet, index: Int)
+    internal func drawDataSet(context context: CGContext!, dataSet: BarChartDataSet, index: Int)
     {
         CGContextSaveGState(context)
         
@@ -273,7 +273,7 @@ public class BarChartRenderer: ChartDataRendererBase
         trans.rectValueToPixel(&rect, phaseY: _animator.phaseY)
     }
     
-    public override func drawValues(context context: CGContext?)
+    public override func drawValues(context context: CGContext!)
     {
         // if values are drawn
         if (passesCheck())
@@ -482,7 +482,7 @@ public class BarChartRenderer: ChartDataRendererBase
     
     private var _highlightArrowPtsBuffer = [CGPoint](count: 3, repeatedValue: CGPoint())
     
-    public override func drawHighlighted(context context: CGContext?, indices: [ChartHighlight])
+    public override func drawHighlighted(context context: CGContext!, indices: [ChartHighlight])
     {
         let barData = delegate!.barChartRendererData(self)
         if (barData === nil)

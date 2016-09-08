@@ -113,17 +113,17 @@ public class ChartXAxisRendererBarChart: ChartXAxisRenderer
         let barData = _chart.data as! BarChartData
         let step = barData.dataSetCount
         
-        CGContextSaveGState(context)
+        CGContextSaveGState(context!)
         
-        CGContextSetStrokeColorWithColor(context, _xAxis.gridColor.CGColor)
-        CGContextSetLineWidth(context, _xAxis.gridLineWidth)
+        CGContextSetStrokeColorWithColor(context!, _xAxis.gridColor.CGColor)
+        CGContextSetLineWidth(context!, _xAxis.gridLineWidth)
         if (_xAxis.gridLineDashLengths != nil)
         {
-            CGContextSetLineDash(context, _xAxis.gridLineDashPhase, _xAxis.gridLineDashLengths, _xAxis.gridLineDashLengths.count)
+            CGContextSetLineDash(context!, _xAxis.gridLineDashPhase, _xAxis.gridLineDashLengths, _xAxis.gridLineDashLengths.count)
         }
         else
         {
-            CGContextSetLineDash(context, 0.0, nil, 0)
+            CGContextSetLineDash(context!, 0.0, nil, 0)
         }
         
         let valueToPixelMatrix = transformer.valueToPixelMatrix
@@ -142,10 +142,10 @@ public class ChartXAxisRendererBarChart: ChartXAxisRenderer
                 _gridLineSegmentsBuffer[0].y = viewPortHandler.contentTop
                 _gridLineSegmentsBuffer[1].x = position.x
                 _gridLineSegmentsBuffer[1].y = viewPortHandler.contentBottom
-                CGContextStrokeLineSegments(context, _gridLineSegmentsBuffer, 2)
+                CGContextStrokeLineSegments(context!, _gridLineSegmentsBuffer, 2)
             }
         }
         
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
     }
 }

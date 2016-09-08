@@ -27,7 +27,7 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
     }
     
     /// Computes the axis values.
-    public func computeAxis(var yMin yMin: Double, var yMax: Double)
+    public func computeAxis(var yMin: Double, var yMax: Double)
     {
         // calculate the starting and entry point of the y-labels (depending on
         // zoom / contentrect bounds)
@@ -48,13 +48,13 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             }
         }
         
-        computeAxisValues(min: yMin, max: yMax)
+        computeAxisValues(yMin, max: yMax)
     }
     
     /// Sets up the y-axis labels. Computes the desired number of labels between
     /// the two given extremes. Unlike the papareXLabels() method, this method
     /// needs to be called upon every refresh of the view.
-    internal func computeAxisValues(min min: Double, max: Double)
+    internal func computeAxisValues(min: Double, max: Double)
     {
         let yMin = min
         let yMax = max
@@ -189,7 +189,7 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             }
         }
         
-        drawYLabels(context: context, fixedPosition: xPos, offset: yoffset - _yAxis.labelFont.lineHeight, textAlign: textAlign)
+        drawYLabels(context, fixedPosition: xPos, offset: yoffset - _yAxis.labelFont.lineHeight, textAlign: textAlign)
     }
     
     private var _axisLineSegmentsBuffer = [CGPoint](count: 2, repeatedValue: CGPoint())
@@ -201,17 +201,17 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             return
         }
         
-        CGContextSaveGState(context)
+        CGContextSaveGState(context!)
         
-        CGContextSetStrokeColorWithColor(context, _yAxis.axisLineColor.CGColor)
-        CGContextSetLineWidth(context, _yAxis.axisLineWidth)
+        CGContextSetStrokeColorWithColor(context!, _yAxis.axisLineColor.CGColor)
+        CGContextSetLineWidth(context!, _yAxis.axisLineWidth)
         if (_yAxis.axisLineDashLengths != nil)
         {
-            CGContextSetLineDash(context, _yAxis.axisLineDashPhase, _yAxis.axisLineDashLengths, _yAxis.axisLineDashLengths.count)
+            CGContextSetLineDash(context!, _yAxis.axisLineDashPhase, _yAxis.axisLineDashLengths, _yAxis.axisLineDashLengths.count)
         }
         else
         {
-            CGContextSetLineDash(context, 0.0, nil, 0)
+            CGContextSetLineDash(context!, 0.0, nil, 0)
         }
         
         if (_yAxis.axisDependency == .Left)
@@ -220,7 +220,7 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             _axisLineSegmentsBuffer[0].y = viewPortHandler.contentTop
             _axisLineSegmentsBuffer[1].x = viewPortHandler.contentLeft
             _axisLineSegmentsBuffer[1].y = viewPortHandler.contentBottom
-            CGContextStrokeLineSegments(context, _axisLineSegmentsBuffer, 2)
+            CGContextStrokeLineSegments(context!, _axisLineSegmentsBuffer, 2)
         }
         else
         {
@@ -228,14 +228,14 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             _axisLineSegmentsBuffer[0].y = viewPortHandler.contentTop
             _axisLineSegmentsBuffer[1].x = viewPortHandler.contentRight
             _axisLineSegmentsBuffer[1].y = viewPortHandler.contentBottom
-            CGContextStrokeLineSegments(context, _axisLineSegmentsBuffer, 2)
+            CGContextStrokeLineSegments(context!, _axisLineSegmentsBuffer, 2)
         }
         
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
     }
     
     /// draws the y-labels on the specified x-position
-    internal func drawYLabels(context context: CGContext?, fixedPosition: CGFloat, offset: CGFloat, textAlign: NSTextAlignment)
+    internal func drawYLabels(context: CGContext?, fixedPosition: CGFloat, offset: CGFloat, textAlign: NSTextAlignment)
     {
         let labelFont = _yAxis.labelFont
         let labelTextColor = _yAxis.labelTextColor
@@ -274,17 +274,17 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             return
         }
         
-        CGContextSaveGState(context)
+        CGContextSaveGState(context!)
         
-        CGContextSetStrokeColorWithColor(context, _yAxis.gridColor.CGColor)
-        CGContextSetLineWidth(context, _yAxis.gridLineWidth)
+        CGContextSetStrokeColorWithColor(context!, _yAxis.gridColor.CGColor)
+        CGContextSetLineWidth(context!, _yAxis.gridLineWidth)
         if (_yAxis.gridLineDashLengths != nil)
         {
-            CGContextSetLineDash(context, _yAxis.gridLineDashPhase, _yAxis.gridLineDashLengths, _yAxis.gridLineDashLengths.count)
+            CGContextSetLineDash(context!, _yAxis.gridLineDashPhase, _yAxis.gridLineDashLengths, _yAxis.gridLineDashLengths.count)
         }
         else
         {
-            CGContextSetLineDash(context, 0.0, nil, 0)
+            CGContextSetLineDash(context!, 0.0, nil, 0)
         }
         
         let valueToPixelMatrix = transformer.valueToPixelMatrix
@@ -302,10 +302,10 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             _gridLineBuffer[0].y = position.y
             _gridLineBuffer[1].x = viewPortHandler.contentRight
             _gridLineBuffer[1].y = position.y
-            CGContextStrokeLineSegments(context, _gridLineBuffer, 2)
+            CGContextStrokeLineSegments(context!, _gridLineBuffer, 2)
         }
         
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
     }
     
     private var _limitLineSegmentsBuffer = [CGPoint](count: 2, repeatedValue: CGPoint())
@@ -319,7 +319,7 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             return
         }
         
-        CGContextSaveGState(context)
+        CGContextSaveGState(context!)
         
         let trans = transformer.valueToPixelMatrix
         
@@ -338,18 +338,18 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             _limitLineSegmentsBuffer[1].x = viewPortHandler.contentRight
             _limitLineSegmentsBuffer[1].y = position.y
             
-            CGContextSetStrokeColorWithColor(context, l.lineColor.CGColor)
-            CGContextSetLineWidth(context, l.lineWidth)
+            CGContextSetStrokeColorWithColor(context!, l.lineColor.CGColor)
+            CGContextSetLineWidth(context!, l.lineWidth)
             if (l.lineDashLengths != nil)
             {
-                CGContextSetLineDash(context, l.lineDashPhase, l.lineDashLengths!, l.lineDashLengths!.count)
+                CGContextSetLineDash(context!, l.lineDashPhase, l.lineDashLengths!, l.lineDashLengths!.count)
             }
             else
             {
-                CGContextSetLineDash(context, 0.0, nil, 0)
+                CGContextSetLineDash(context!, 0.0, nil, 0)
             }
             
-            CGContextStrokeLineSegments(context, _limitLineSegmentsBuffer, 2)
+            CGContextStrokeLineSegments(context!, _limitLineSegmentsBuffer, 2)
             
             let label = l.label
             
@@ -405,6 +405,6 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             }
         }
         
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
     }
 }

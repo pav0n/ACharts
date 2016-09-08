@@ -26,12 +26,12 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
         _chart = chart
     }
  
-    public override func computeAxis(yMin yMin: Double, yMax: Double)
+    public override func computeAxis(_ yMin: Double, yMax: Double)
     {
-        computeAxisValues(min: yMin, max: yMax)
+        computeAxisValues(yMin, max: yMax)
     }
     
-    internal override func computeAxisValues(min yMin: Double, max yMax: Double)
+    internal override func computeAxisValues(_ yMin: Double, max yMax: Double)
     {
         let labelCount = _yAxis.labelCount
         let range = abs(yMax - yMin)
@@ -183,7 +183,7 @@ public class ChartYAxisRendererRadarChart: ChartYAxisRenderer
         }
     }
     
-    public override func renderLimitLines(context context: CGContext?)
+    public override func renderLimitLines(context context: CGContext!)
     {
         var limitLines = _yAxis.limitLines
         

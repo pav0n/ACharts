@@ -23,7 +23,7 @@ public class ChartYAxisRendererHorizontalBarChart: ChartYAxisRenderer
     }
 
     /// Computes the axis values.
-    public override func computeAxis(var yMin yMin: Double, var yMax: Double)
+    public override func computeAxis(var _ yMin: Double, var yMax: Double)
     {
         // calculate the starting and entry point of the y-labels (depending on zoom / contentrect bounds)
         if (viewPortHandler.contentHeight > 10.0 && !viewPortHandler.isFullyZoomedOutX)
@@ -43,7 +43,7 @@ public class ChartYAxisRendererHorizontalBarChart: ChartYAxisRenderer
             }
         }
         
-        computeAxisValues(min: yMin, max: yMax)
+        computeAxisValues(yMin, max: yMax)
     }
 
     /// draws the y-axis labels to the screen
@@ -104,7 +104,7 @@ public class ChartYAxisRendererHorizontalBarChart: ChartYAxisRenderer
     
     private var _axisLineSegmentsBuffer = [CGPoint](count: 2, repeatedValue: CGPoint())
     
-    public override func renderAxisLine(context context: CGContext?)
+    public override func renderAxisLine(context context: CGContext!)
     {
         if (!_yAxis.isEnabled || !_yAxis.drawAxisLineEnabled)
         {
@@ -163,7 +163,7 @@ public class ChartYAxisRendererHorizontalBarChart: ChartYAxisRenderer
         }
     }
 
-    public override func renderGridLines(context context: CGContext?)
+    public override func renderGridLines(context context: CGContext!)
     {
         if (!_yAxis.isEnabled || !_yAxis.isDrawGridLinesEnabled)
         {
@@ -204,7 +204,7 @@ public class ChartYAxisRendererHorizontalBarChart: ChartYAxisRenderer
     
     private var _limitLineSegmentsBuffer = [CGPoint](count: 2, repeatedValue: CGPoint())
     
-    public override func renderLimitLines(context context: CGContext?)
+    public override func renderLimitLines(context context: CGContext!)
     {
         var limitLines = _yAxis.limitLines
 

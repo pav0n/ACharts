@@ -56,7 +56,7 @@ public class CandleStickChartRenderer: LineScatterCandleRadarChartRenderer
     private var _bodyRect = CGRect()
     private var _lineSegments = [CGPoint](count: 2, repeatedValue: CGPoint())
     
-    internal func drawDataSet(context context: CGContext?, dataSet: CandleChartDataSet)
+    internal func drawDataSet(context context: CGContext!, dataSet: CandleChartDataSet)
     {
         let trans = delegate!.candleStickChartRenderer(self, transformerForAxis: dataSet.axisDependency)
         
@@ -239,7 +239,7 @@ public class CandleStickChartRenderer: LineScatterCandleRadarChartRenderer
     }
     
     private var _highlightPtsBuffer = [CGPoint](count: 4, repeatedValue: CGPoint())
-    public override func drawHighlighted(context context: CGContext?, indices: [ChartHighlight])
+    public override func drawHighlighted(context context: CGContext!, indices: [ChartHighlight])
     {
         let candleData = delegate!.candleStickChartRendererCandleData(self)
         if (candleData === nil)

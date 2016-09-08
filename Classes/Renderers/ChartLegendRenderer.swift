@@ -364,7 +364,7 @@ public class ChartLegendRenderer: ChartRendererBase
     private var _formLineSegmentsBuffer = [CGPoint](count: 2, repeatedValue: CGPoint())
     
     /// Draws the Legend-form at the given position with the color at the given index.
-    internal func drawForm(context: CGContext?, x: CGFloat, y: CGFloat, colorIndex: Int, legend: ChartLegend)
+    internal func drawForm(context: CGContext!, x: CGFloat, y: CGFloat, colorIndex: Int, legend: ChartLegend)
     {
         let formColor = legend.colors[colorIndex]
         

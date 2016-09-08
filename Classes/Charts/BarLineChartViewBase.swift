@@ -149,11 +149,11 @@ public class BarLineChartViewBase: ChartViewBase, UIGestureRecognizerDelegate
         
         if (_leftAxis.isEnabled)
         {
-            _leftYAxisRenderer?.computeAxis(yMin: _leftAxis.axisMinimum, yMax: _leftAxis.axisMaximum)
+            _leftYAxisRenderer?.computeAxis(_leftAxis.axisMinimum, yMax: _leftAxis.axisMaximum)
         }
         if (_rightAxis.isEnabled)
         {
-            _rightYAxisRenderer?.computeAxis(yMin: _rightAxis.axisMinimum, yMax: _rightAxis.axisMaximum)
+            _rightYAxisRenderer?.computeAxis(_rightAxis.axisMinimum, yMax: _rightAxis.axisMaximum)
         }
         
         _xAxisRenderer?.renderAxisLine(context: context)
@@ -177,9 +177,9 @@ public class BarLineChartViewBase: ChartViewBase, UIGestureRecognizerDelegate
         }
         
         // make sure the graph values and grid cannot be drawn outside the content-rect
-        CGContextSaveGState(context)
+        CGContextSaveGState(context!)
 
-        CGContextClipToRect(context, _viewPortHandler.contentRect)
+        CGContextClipToRect(context!, _viewPortHandler.contentRect)
         
         if (_xAxis.isDrawLimitLinesBehindDataEnabled)
         {
@@ -220,7 +220,7 @@ public class BarLineChartViewBase: ChartViewBase, UIGestureRecognizerDelegate
         }
 
         // Removes clipping rectangle
-        CGContextRestoreGState(context)
+        CGContextRestoreGState(context!)
         
         renderer!.drawExtras(context: context)
         
@@ -262,10 +262,10 @@ public class BarLineChartViewBase: ChartViewBase, UIGestureRecognizerDelegate
         _leftAxis?._defaultValueFormatter = _defaultValueFormatter
         _rightAxis?._defaultValueFormatter = _defaultValueFormatter
         
-        _leftYAxisRenderer?.computeAxis(yMin: _leftAxis.axisMinimum, yMax: _leftAxis.axisMaximum)
-        _rightYAxisRenderer?.computeAxis(yMin: _rightAxis.axisMinimum, yMax: _rightAxis.axisMaximum)
+        _leftYAxisRenderer?.computeAxis(_leftAxis.axisMinimum, yMax: _leftAxis.axisMaximum)
+        _rightYAxisRenderer?.computeAxis(_rightAxis.axisMinimum, yMax: _rightAxis.axisMaximum)
         
-        _xAxisRenderer?.computeAxis(xValAverageLength: _data.xValAverageLength, xValues: _data.xVals)
+        _xAxisRenderer?.computeAxis(_data.xValAverageLength, xValues: _data.xVals)
         
         if (_legend !== nil)
         {
@@ -513,7 +513,7 @@ public class BarLineChartViewBase: ChartViewBase, UIGestureRecognizerDelegate
     }
     
     /// draws the grid background
-    internal func drawGridBackground(context context: CGContext?)
+    internal func drawGridBackground(context context: CGContext!)
     {
         if (drawGridBackgroundEnabled || drawBordersEnabled)
         {

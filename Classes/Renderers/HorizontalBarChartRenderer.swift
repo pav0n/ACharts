@@ -22,7 +22,7 @@ public class HorizontalBarChartRenderer: BarChartRenderer
         super.init(delegate: delegate, animator: animator, viewPortHandler: viewPortHandler)
     }
     
-    internal override func drawDataSet(context context: CGContext?, dataSet: BarChartDataSet, index: Int)
+    internal override func drawDataSet(context context: CGContext!, dataSet: BarChartDataSet, index: Int)
     {
         CGContextSaveGState(context)
         
