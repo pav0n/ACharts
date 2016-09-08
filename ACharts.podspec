@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name = "ACharts"
+  s.name = "Charts"
   s.version = "2.2.5"
   s.summary = "ios-charts is a powerful & easy to use chart library for iOS"
   s.homepage = "https://github.com/danielgindi/ios-charts"
